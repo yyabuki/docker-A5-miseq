@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+# Destination output directory
+#DIR=$3
+DIR=$4
+
+# Set up logging
+LOG=$DIR/log.txt
+exec  > >(tee ${LOG})
+exec 2>&1
+set -o xtrace
+
+#TMP=$(mktemp -d)
+
+PREFIX='assembly'
+
+# Source reads in this container
+#INPUTS=$2
+INPUT1=$2
+INPUT2=$3
+
+# Determine which process to run
+PROC=$1
+CMD=$(egrep ^${PROC}: /Procfile | cut -f 2 -d ':')
+
+if [[ -z ${CMD} ]]; then
+  echo "Abort, no proc found for ${PROC}."
+  exit 1
+fi
+
+cd $DIR && eval ${CMD}
+
+
+# Destination scaffold or contigs file (only "contigs" produced for --metagenome)
+ASSEMBLY=${DIR}/assembly.final.scaffolds.fasta
+if [ ! -f $ASSEMBLY ]; then
+  ASSEMBLY=${DIR}/assembly.contigs.fasta
+fi
+cp $ASSEMBLY $DIR/contigs.fa
