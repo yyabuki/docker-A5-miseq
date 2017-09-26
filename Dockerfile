@@ -1,4 +1,3 @@
-#FROM debian:jessie
 FROM ubuntu:16.04
 MAINTAINER Yukimitsu Yabuki, yukimitsu.yabuki@gmail.com
 # a bit modified Aaron Darling's Dockerfile, Procfile and run files
