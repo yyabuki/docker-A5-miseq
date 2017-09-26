@@ -1,9 +1,10 @@
-FROM debian:jessie
+#FROM debian:jessie
+FROM ubuntu:16.04
 MAINTAINER Yukimitsu Yabuki, yukimitsu.yabuki@gmail.com
-# a bit modified Aaron Darling's Dockerfile
+# a bit modified Aaron Darling's Dockerfile, Procfile and run files
 
-RUN apt-get update -y
-RUN apt-get install -y openjdk-7-jre-headless file
+RUN apt-get update -y && \
+    apt-get install -y openjdk-8-jre-headless
 
 ADD http://downloads.sourceforge.net/project/ngopt/a5_miseq_linux_20150522.tar.gz /tmp/a5_miseq.tar.gz
 
