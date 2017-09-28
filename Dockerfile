@@ -5,10 +5,10 @@ MAINTAINER Yukimitsu Yabuki, yukimitsu.yabuki@gmail.com
 RUN apt-get update -y && \
     apt-get install -y openjdk-8-jre-headless
 
-ADD http://downloads.sourceforge.net/project/ngopt/a5_miseq_linux_20150522.tar.gz /tmp/a5_miseq.tar.gz
+ADD http://downloads.sourceforge.net/project/ngopt/a5_miseq_linux_20150522.tar.gz /a5_miseq.tar.gz
 
-RUN mkdir /tmp/a5_miseq
-RUN tar xzf /tmp/a5_miseq.tar.gz --directory /tmp/a5_miseq --strip-components=1
+RUN mkdir /a5_miseq
+RUN tar xzf /a5_miseq.tar.gz --directory /a5_miseq --strip-components=1
 
 
 ADD run /usr/local/bin/
